@@ -34,9 +34,15 @@
 </script>
 
 <div>
-    <button on:click|preventDefault={decrement}>Decrement</button>
-    <input type="number" name={field.name} step="1" value={field.value} readonly />
-    <button on:click|preventDefault={increment}>Increment</button>
+    <button on:click|preventDefault="{decrement}">Decrement</button>
+    <input
+        type="number"
+        name="{field.name}"
+        step="1"
+        value="{field.value}"
+        readonly
+    />
+    <button on:click|preventDefault="{increment}">Increment</button>
 </div>
 ```
 
@@ -49,7 +55,7 @@
     import StepCounter from './StepCounter.svelte'
 </script>
 
-<Field name="steps" as={StepCounter} />
+<Field name="steps" as="{StepCounter}" />
 ```
 
 ### Svelte-Tags-Input
@@ -72,7 +78,7 @@ A small wrapper around [agustinl/svelte-tags-input](https://github.com/agustinl/
     }
 </script>
 
-<Tags on:tags={handleTags} tags={field.value} {name} />
+<Tags on:tags="{handleTags}" tags="{field.value}" {name} />
 ```
 
 **App.svelte**

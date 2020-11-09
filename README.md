@@ -15,7 +15,9 @@ Forms in Svelte, inspired by [Formik](https://jaredpalmer.com/formik/).
         const errors = {}
         if (!values.email) {
             errors.email = 'Required'
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+        } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
             errors.email = 'Invalid email address'
         }
         return errors
@@ -30,13 +32,13 @@ Forms in Svelte, inspired by [Formik](https://jaredpalmer.com/formik/).
 </script>
 
 <Sveltik {initialValues} {validate} {onSubmit} let:isSubmitting>
-    <Form>
+    <form>
         <Field type="email" name="email" />
         <ErrorMessage name="email" as="div" />
         <Field type="password" name="password" />
         <ErrorMessage name="password" as="div" />
-        <button type="submit" disabled={isSubmitting}>Submit</button>
-    </Form>
+        <button type="submit" disabled="{isSubmitting}">Submit</button>
+    </form>
 </Sveltik>
 ```
 
@@ -87,54 +89,54 @@ the render prop pattern in React.
 
 ### Props
 
-- `enableReinitialize?: boolean`
-- `initialErrors?: SveltikErrors<Values>`
-- `initialStatus?: any`
-- `initialTouched?: SveltikTouched<Values>`
-- `initialValues: Values`
-- `initialWarnings?: SveltikWarnings<Values>`
-- `onReset?: (values: Values, sveltikBag: SveltikBag) => void`
-- `onSubmit: (values: Values, sveltikBag: SveltikBag) => void | Promise<any>`
-- `validate?: (values: Values) => SveltikErrors<Values>`
-- `validateOnBlur?: boolean`
-- `validateOnChange?: boolean`
-- `validateOnMount?: boolean`
+-   `enableReinitialize?: boolean`
+-   `initialErrors?: SveltikErrors<Values>`
+-   `initialStatus?: any`
+-   `initialTouched?: SveltikTouched<Values>`
+-   `initialValues: Values`
+-   `initialWarnings?: SveltikWarnings<Values>`
+-   `onReset?: (values: Values, sveltikBag: SveltikBag) => void`
+-   `onSubmit: (values: Values, sveltikBag: SveltikBag) => void | Promise<any>`
+-   `validate?: (values: Values) => SveltikErrors<Values>`
+-   `validateOnBlur?: boolean`
+-   `validateOnChange?: boolean`
+-   `validateOnMount?: boolean`
 
 ### let:props
 
-- `let:props: SveltikProps`
-- `let:dirty: boolean`
-- `let:errors: { [field: string]: string }`
-- `let:handleBlur: (e: HTMLBlurEvent) => void`
-- `let:handleChange: (e: HTMLInputEvent) => void`
-- `let:handleReset: () => void`
-- `let:handleSubmit: (e: HTMLFormEvent) => void`
-- `let:isSubmitting: boolean`
-- `let:isValid: boolean`
-- `let:isValidating: boolean`
-- `let:resetForm: (nextInitialState?: SveltikState<Values>) => void`
-- `let:setErrors: (fields: { [field: string]: string }) => void`
-- `let:setFieldError: (field: string, errorMsg: string) => void`
-- `let:setFieldTouched: (field: string, isTouched?: boolean, shouldValidate?: boolean) => void`
-- `let:setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void`
-- `let:setFieldWarning: (field: string, warning: string) => void`
-- `let:setStatus: (status?: any) => void`
-- `let:setSubmitting: (isSubmitting: boolean) => void`
-- `let:setTouched: (fields: { [field: string]: boolean }, shouldValidate?: boolean) => void`
-- `let:setValues: (fields: { [field: string]: any }, shouldValidate?: boolean) => void`
-- `let:setWarnings: (fields: { [field: string]: string }) => void`
-- `let:status: any`
-- `let:submitAttemptCount: number`
-- `let:submitFailure: () => void`
-- `let:submitFailureCount: number`
-- `let:submitForm: () => Promise`
-- `let:submitSuccess: () => void`
-- `let:submitSuccessCount: number`
-- `let:touched: { [field: string]: boolean }`
-- `let:values: { [field: string]: any }`
-- `let:validateForm: (values?: any) => void`
-- `let:validateField: (field: string) => void`
-- `let:warnings: { [field: string]: string }`
+-   `let:props: SveltikProps`
+-   `let:dirty: boolean`
+-   `let:errors: { [field: string]: string }`
+-   `let:handleBlur: (e: HTMLBlurEvent) => void`
+-   `let:handleChange: (e: HTMLInputEvent) => void`
+-   `let:handleReset: () => void`
+-   `let:handleSubmit: (e: HTMLFormEvent) => void`
+-   `let:isSubmitting: boolean`
+-   `let:isValid: boolean`
+-   `let:isValidating: boolean`
+-   `let:resetForm: (nextInitialState?: SveltikState<Values>) => void`
+-   `let:setErrors: (fields: { [field: string]: string }) => void`
+-   `let:setFieldError: (field: string, errorMsg: string) => void`
+-   `let:setFieldTouched: (field: string, isTouched?: boolean, shouldValidate?: boolean) => void`
+-   `let:setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void`
+-   `let:setFieldWarning: (field: string, warning: string) => void`
+-   `let:setStatus: (status?: any) => void`
+-   `let:setSubmitting: (isSubmitting: boolean) => void`
+-   `let:setTouched: (fields: { [field: string]: boolean }, shouldValidate?: boolean) => void`
+-   `let:setValues: (fields: { [field: string]: any }, shouldValidate?: boolean) => void`
+-   `let:setWarnings: (fields: { [field: string]: string }) => void`
+-   `let:status: any`
+-   `let:submitAttemptCount: number`
+-   `let:submitFailure: () => void`
+-   `let:submitFailureCount: number`
+-   `let:submitForm: () => Promise`
+-   `let:submitSuccess: () => void`
+-   `let:submitSuccessCount: number`
+-   `let:touched: { [field: string]: boolean }`
+-   `let:values: { [field: string]: any }`
+-   `let:validateForm: (values?: any) => void`
+-   `let:validateField: (field: string) => void`
+-   `let:warnings: { [field: string]: string }`
 
 ### Reference
 
@@ -323,12 +325,12 @@ Form warnings. Should match the shape of your form's values defined in `initialV
 
 #### Differences with Formik
 
-- Validation is synchronous
-- Includes support for field warnings with `warnings`, `setWarnings`, `setFieldWarning`
-- Includes support for submission success/failure with `submitSuccess` and `submitFailure` helpers
-- Tracks `submitAttemptCount`, `submitFailureCount` and `submitSuccessCount` instead of only `submitCount`
-- If `onSubmit` returns a promise, it's rejection calls `submitFailure` and it's resolution calls `submitSuccess`
-- Does not (yet) implement Yup or `validateSchema`
+-   Validation is synchronous
+-   Includes support for field warnings with `warnings`, `setWarnings`, `setFieldWarning`
+-   Includes support for submission success/failure with `submitSuccess` and `submitFailure` helpers
+-   Tracks `submitAttemptCount`, `submitFailureCount` and `submitSuccessCount` instead of only `submitCount`
+-   If `onSubmit` returns a promise, it's rejection calls `submitFailure` and it's resolution calls `submitSuccess`
+-   Does not (yet) implement Yup or `validateSchema`
 
 ## `<Field />`
 
@@ -347,7 +349,12 @@ With no options passed, `<Field />` will default to an HTML `<input />` element.
     export let props
 </script>
 
-<input {...field} {...props} on:input={field.handleInput} on:blur={field.handleBlur} />
+<input
+    {...field}
+    {...props}
+    on:input="{field.handleInput}"
+    on:blur="{field.handleBlur}"
+/>
 ```
 
 **App.svelte**
@@ -401,15 +408,15 @@ With no options passed, `<Field />` will default to an HTML `<input />` element.
 
 ### Props
 
-- `as?: string | Component`
-- `name: string`
-- `validate?: (value: any) => undefined | string`
+-   `as?: string | Component`
+-   `name: string`
+-   `validate?: (value: any) => undefined | string`
 
 ### let:props
 
-- `let:field: FieldInputProps`
-- `let:form: SveltikBag`
-- `let:meta: FieldMetaProps`
+-   `let:field: FieldInputProps`
+-   `let:form: SveltikBag`
+-   `let:meta: FieldMetaProps`
 
 ### Reference
 
@@ -419,9 +426,9 @@ With no options passed, `<Field />` will default to an HTML `<input />` element.
 
 Either a Svelte component or the name of an HTML element to render. Supports the following:
 
-- `input`
-- `select`
-- `textarea`
+-   `input`
+-   `select`
+-   `textarea`
 
 Svelte components must `export let` the props that they expect to be passed.
 The available props are match the let:props (see below). Also is passed an additional prop
@@ -444,10 +451,10 @@ If invalid, return a `string` containing the error message or return `undefined`
 
 An object that contains:
 
-- `name: string` - The name of the field
-- `value: any` - The value of the field
-- `handleInput: (e: HTMLInputEvent) => void` - Input handler to be bound with `on:input`
-- `handleBlur: (e: HTMLBlurEvent) => void` - Blur handler to be bound with `on:blur`
+-   `name: string` - The name of the field
+-   `value: any` - The value of the field
+-   `handleInput: (e: HTMLInputEvent) => void` - Input handler to be bound with `on:input`
+-   `handleBlur: (e: HTMLBlurEvent) => void` - Blur handler to be bound with `on:blur`
 
 ##### `let:form: SveltikBag`
 
@@ -455,20 +462,20 @@ An object that contains:
 
 An object that contains:
 
-- `initialError?: string` - The field's initial error if the field is present in `initialErrors`
-- `initialTouched?: boolean` - The field's initial value if the field is present in `initialTouched`
-- `initialValue?: any` - The field's initial value if the field is given a value in `initialValues`
-- `initialWarning?: string` - The field's initial warning if the field is given a value in `initialWarnings`
-- `error?: string` - The field's error message
-- `touched?: boolean` - Whether the field has been visited
-- `value?: any` - The field's value
-- `warning?: string` - The field's warning message
+-   `initialError?: string` - The field's initial error if the field is present in `initialErrors`
+-   `initialTouched?: boolean` - The field's initial value if the field is present in `initialTouched`
+-   `initialValue?: any` - The field's initial value if the field is given a value in `initialValues`
+-   `initialWarning?: string` - The field's initial warning if the field is given a value in `initialWarnings`
+-   `error?: string` - The field's error message
+-   `touched?: boolean` - Whether the field has been visited
+-   `value?: any` - The field's value
+-   `warning?: string` - The field's warning message
 
 #### Differences with Formik
 
-- Validation is synchronous
-- Event handlers must be set implictly with `on:input`, `on:blur` instead of spread attributes.
-- Nested field names (paths) are not supported.
+-   Validation is synchronous
+-   Event handlers must be set implictly with `on:input`, `on:blur` instead of spread attributes.
+-   Nested field names (paths) are not supported.
 
 ## `<Form />`
 
@@ -491,12 +498,12 @@ It expects that all error messages are stored for a given field as a string.
 
 ### Props
 
-- `as?: string | Component`
-- `name: string`
+-   `as?: string | Component`
+-   `name: string`
 
 ### let:props
 
-- `let:msg: string`
+-   `let:msg: string`
 
 ### Reference
 
@@ -523,5 +530,5 @@ A field's error message.
 
 #### Differences with Formik
 
-- Nested field names (paths) are not supported.
-- Uses `as` prop instead of `component` for consistency with `<Field />`
+-   Nested field names (paths) are not supported.
+-   Uses `as` prop instead of `component` for consistency with `<Field />`
